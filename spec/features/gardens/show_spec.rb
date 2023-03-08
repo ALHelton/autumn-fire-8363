@@ -10,6 +10,8 @@ RSpec.describe 'Garden Show Page', type: :feature do
 
   let!(:plot4) { Plot.create!(number: 4, size: "Large", direction: "South", garden_id: garden2.id) }
 
+  let!(:plot5) { Plot.create!(number: 5, size: "Medium", direction: "West", garden_id: garden1.id) }
+
   let!(:tomatos) { Plant.create!(name: "Tomatos", description: "It's tomatos", days_to_harvest: 100) }
   let!(:beans) { Plant.create!(name: "Beans", description: "It's Beans", days_to_harvest: 50) }
   let!(:carrots) { Plant.create!(name: "Carrots", description: "It's carrots", days_to_harvest: 80) }
@@ -18,8 +20,6 @@ RSpec.describe 'Garden Show Page', type: :feature do
   let!(:cabbage) { Plant.create!(name: "Cabbage", description: "It's a cabbage", days_to_harvest: 150) }
 
   let!(:broccoli) { Plant.create!(name: "Broccoli", description: "It's broccoli", days_to_harvest: 150) }
-
-
 
   before do
     PlantPlot.create!(plant: tomatos, plot: plot1)
@@ -35,6 +35,12 @@ RSpec.describe 'Garden Show Page', type: :feature do
 
     PlantPlot.create!(plant: broccoli, plot: plot4)
 
+    PlantPlot.create!(plant: carrots, plot: plot5)
+
+    #beans --> 2
+    #carrots --> 3
+    #onions --> 1
+
     visit "/garden/#{garden1.id}"
   end
 
@@ -49,5 +55,12 @@ RSpec.describe 'Garden Show Page', type: :feature do
     
     expect(page).to_not have_content("Other Garden Plants")
     expect(page).to_not have_content("Broccoli")
+  end
+
+  describe 'extension' do
+    it 'Then I see the list of plants is sorted by the number of times the plant appears in any of that garden`s plots from most to least' do
+      expect("Carrots").to appear_before("Beans")
+      expect("Beans").to appear_before("Onions")
+    end
   end
 end
