@@ -12,7 +12,6 @@ RSpec.describe 'Plots Index Page', type: :feature do
   let!(:carrots) { Plant.create!(name: "Carrots", description: "It's carrots", days_to_harvest: 80) }
   let!(:onions) { Plant.create!(name: "Onions", description: "It's onions", days_to_harvest: 80) }
 
-
   let!(:cabbage) { Plant.create!(name: "Cabbage", description: "It's a cabbage", days_to_harvest: 150) }
 
   before do
@@ -63,4 +62,7 @@ RSpec.describe 'Plots Index Page', type: :feature do
     end
   end
 
+  it 'Next to each plant name, I see a link or button to remove that plant from the plot' do
+    expect(page).to have_link("Delete", count: 8)
+  end
 end
