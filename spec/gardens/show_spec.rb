@@ -40,6 +40,7 @@ RSpec.describe 'Garden Show Page', type: :feature do
 
   it 'I see a list of plants that are included in that garden`s plots, no duplicates, only plants less than 100 days to harvest' do
     expect(page).to have_content("Turing Community Garden Plants")
+    expect(page).to have_content("All Plants Less Than 100 Days to Harvest:")
     expect(page).to have_content("Tomatos")
     expect(page).to have_content("Beans")
     expect(page).to have_content("Carrots")
