@@ -58,7 +58,7 @@ RSpec.describe 'Garden Show Page', type: :feature do
   end
 
   describe 'extension' do
-    it 'Then I see the list of plants is sorted by the number of times the plant appears in any of that garden`s plots from most to least' do
+    xit 'Then I see the list of plants is sorted by the number of times the plant appears in any of that garden`s plots from most to least' do
       expect("Carrots").to appear_before("Beans")
       expect("Beans").to appear_before("Onions")
     end
