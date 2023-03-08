@@ -65,4 +65,15 @@ RSpec.describe 'Plots Index Page', type: :feature do
   it 'Next to each plant name, I see a link or button to remove that plant from the plot' do
     expect(page).to have_link("Delete", count: 8)
   end
+
+  it "When I click on delete, returned to the plots index page, no longer see plant listed under that plot, and still see that plant's name under other plots" do
+    
+    within "#plot-#{plot1.id}" do
+    
+      first(:link, "Delete").click
+
+      expect(current_path).to eq("/plots")
+      expect(page).to_not have_content("Tomatos")
+    end
+  end
 end
