@@ -47,6 +47,7 @@ RSpec.describe 'Garden Show Page', type: :feature do
     expect(page).to have_content("Onions")
     
     expect(page).to_not have_content("Other Garden Plants")
+    expect(page).to_not have_content("Tomatos")
     expect(page).to_not have_content("Cabbage")
     expect(page).to_not have_content("Broccoli")
   end
