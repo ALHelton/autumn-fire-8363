@@ -40,6 +40,8 @@ RSpec.describe Garden do
   end
 
   describe 'instance methods' do
-    expect(garden1.under_hundred_days_to_harvest_plants).to eq([tomatos, beans, carrots, onions])
+    it 'under_hundred_days_to_harvest_plants' do
+      expect(garden1.under_hundred_days_to_harvest_plants).to eq([tomatos, beans, carrots, onions])
+    end
   end
 end
